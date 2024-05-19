@@ -10,14 +10,11 @@ package wanion.unidict.integration;
 
 import com.cout970.magneticraft.api.internal.registries.machines.crushingtable.CrushingTableRecipe;
 import com.cout970.magneticraft.api.internal.registries.machines.crushingtable.CrushingTableRecipeManager;
-import com.cout970.magneticraft.api.internal.registries.machines.grinder.GrinderRecipe;
-import com.cout970.magneticraft.api.internal.registries.machines.grinder.GrinderRecipeManager;
 import com.cout970.magneticraft.api.internal.registries.machines.sieve.SieveRecipe;
 import com.cout970.magneticraft.api.internal.registries.machines.sieve.SieveRecipeManager;
 import com.cout970.magneticraft.api.internal.registries.machines.sluicebox.SluiceBoxRecipe;
 import com.cout970.magneticraft.api.internal.registries.machines.sluicebox.SluiceBoxRecipeManager;
 import com.cout970.magneticraft.api.registries.machines.crushingtable.ICrushingTableRecipe;
-import com.cout970.magneticraft.api.registries.machines.grinder.IGrinderRecipe;
 import com.cout970.magneticraft.api.registries.machines.sifter.ISieveRecipe;
 import com.cout970.magneticraft.api.registries.machines.sluicebox.ISluiceBoxRecipe;
 import com.google.common.collect.Lists;
@@ -40,7 +37,7 @@ final class MagneticraftIntegration extends AbstractIntegrationThread
 		try {
 			fixCrushingTableRecipes();
 			fixSluiceBoxRecipes();
-			fixGrinderRecipes();
+			//fixGrinderRecipes();
 			fixSieveRecipe();
 		} catch (Exception e) {
 			logger.error(threadName + e);
@@ -68,12 +65,12 @@ final class MagneticraftIntegration extends AbstractIntegrationThread
 		});
 	}
 
-	private void fixGrinderRecipes()
-	{
-		final List<IGrinderRecipe> recipes = Util.getField(GrinderRecipeManager.class, "recipes", GrinderRecipeManager.INSTANCE, List.class);
-		if (recipes != null)
-			recipes.replaceAll(iGrinderRecipe -> new GrinderRecipe(iGrinderRecipe.getInput(), resourceHandler.getMainItemStack(iGrinderRecipe.getPrimaryOutput()), resourceHandler.getMainItemStack(iGrinderRecipe.getSecondaryOutput()), iGrinderRecipe.getProbability(), iGrinderRecipe.getDuration(), iGrinderRecipe.useOreDictionaryEquivalencies()));
-	}
+//	private void fixGrinderRecipes()
+//	{
+//		final List<IGrinderRecipe> recipes = Util.getField(GrinderRecipeManager.class, "recipes", GrinderRecipeManager.INSTANCE, List.class);
+//		if (recipes != null)
+//			recipes.replaceAll(iGrinderRecipe -> new GrinderRecipe(iGrinderRecipe.getInput(), resourceHandler.getMainItemStack(iGrinderRecipe.getPrimaryOutput()), resourceHandler.getMainItemStack(iGrinderRecipe.getSecondaryOutput()), iGrinderRecipe.getProbability(), iGrinderRecipe.getDuration(), iGrinderRecipe.useOreDictionaryEquivalencies()));
+//	}
 
 	private void fixSieveRecipe()
 	{
